@@ -13,7 +13,7 @@ import org.apache.spark.rdd.{JdbcRDD, RDD}
 import org.apache.spark.sql.DataFrame
 import org.springframework.context.support.ClassPathXmlApplicationContext
 
-case class SparkSqlValueClassMPP(driver:String,url:String,username:String,password:String,sql:String,table:String,opdelimeter:String,lowerbound:String,upperbound:String,numberofparitions:String,parallelizecolumn:String)
+case class SparkSqlValueClassMPP(driver:String,url:String,username:String,password:String,table:String,opdelimeter:String,lowerbound:String,upperbound:String,numberofparitions:String,parallelizecolumn:String)
 
 object SparkDBExtractorMPP {
 
@@ -38,8 +38,6 @@ object SparkDBExtractorMPP {
     val url = DBinfo.url
     val username = DBinfo.username
     val password = DBinfo.password
-    val query = DBinfo.sql
-    val sqlquery = DBinfo.sql
     val table = DBinfo.table
     val opdelimeter=DBinfo.opdelimeter
     val lowerbound=DBinfo.lowerbound.toInt
@@ -52,7 +50,6 @@ object SparkDBExtractorMPP {
     println("DB Url:-%s".format(url))
     println("Username:-%s".format(username))
     println("Password:-%s".format(password))
-    println("Query:-%s".format(query))
     println("Table:-%s".format(table))
     println("Opdelimeter:-%s".format(opdelimeter))
     println("Lowerbound:-%s".format(lowerbound))
@@ -71,10 +68,7 @@ object SparkDBExtractorMPP {
 
     df.show(10)
 
-    df.registerTempTable(table)
-    val OP=sqlContext.sql(query)
-
-    opfile(OP,opdelimeter).saveAsTextFile("C:\\Users\\kalit_000\\Desktop\\typesafe\\scaladbop\\op.txt")
+    opfile(df,opdelimeter).saveAsTextFile("C:\\Users\\kalit_000\\Desktop\\typesafe\\scaladbop\\op.txt")
 
     } catch {
       case e: Exception => e.printStackTrace
