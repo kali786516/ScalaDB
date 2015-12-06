@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+        "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+    <bean id="queryProps" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+    </bean>
+
+    <bean id="SparkSQLDBExtractorMPP" class="com.kali.db.SparkSqlValueClassMPP">
+        <constructor-arg value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
+        <constructor-arg value="jdbc:sqlserver://localhost;user=admin;password=oracle;database=AdventureWorks2014" />
+        <constructor-arg value="admin" />
+        <constructor-arg value="oracle" />
+        <constructor-arg value="select CustomerID,StoreID,TerritoryID,AccountNumber,ModifiedDate from customer limit 10" />
+        <constructor-arg value="customer" />
+        <constructor-arg value="~" />
+        <constructor-arg value="1" />
+        <constructor-arg value="100" />
+        <constructor-arg value="8" />
+        <constructor-arg value="CustomerID" />
+    </bean>
+</beans>
