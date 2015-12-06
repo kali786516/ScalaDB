@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+  "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+    <bean id="queryProps" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+    </bean>
+
+    <bean id="springtest" class="com.kali.db.SpringTestDB">
+        <property name="dataSource" ref="basicDataSource"/>
+    </bean>
+
+    <bean id="sqlquerytest" class="com.kali.db.sqlqueryclass">
+        <constructor-arg value="select top 1 *  from AdventureWorks2014.dbo.Customer" />
+    </bean>
+
+     <bean id="basicDataSource" class="org.apache.commons.dbcp.BasicDataSource">
+        <property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
+        <property name="url" value="jdbc:sqlserver://localhost;user=admin;password=oracle;database=AdventureWorks2014" />
+        <property name="username" value="admin" />
+        <property name="password" value="oracle" />
+        <property name="initialSize" value="1" />
+        <property name="maxActive" value="5" />
+     </bean>
+
+</beans>
