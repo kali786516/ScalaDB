@@ -10,8 +10,7 @@
         <constructor-arg value="jdbc:sqlserver://localhost;user=admin;password=oracle;database=AdventureWorks2014" />
         <constructor-arg value="admin" />
         <constructor-arg value="oracle" />
-        <constructor-arg value="select CustomerID,StoreID,TerritoryID,AccountNumber,ModifiedDate from customer limit 10" />
-        <constructor-arg value="customer" />
+        <constructor-arg value="(select top 100 CustomerID,StoreID,TerritoryID,AccountNumber,ModifiedDate from customer ) as customer" />
         <constructor-arg value="~" />
         <constructor-arg value="1" />
         <constructor-arg value="100" />
