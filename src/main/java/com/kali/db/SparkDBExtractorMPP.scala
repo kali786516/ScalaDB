@@ -65,7 +65,6 @@ object SparkDBExtractorMPP {
 
     val sqlContext = new org.apache.spark.sql.SQLContext(sc)
     val df = sqlContext.read.jdbc(url,table,parallelizecolumn,lowerbound,upperbound,numberofpartitions,props)
-
     df.show(10)
 
     opfile(df,opdelimeter).saveAsTextFile("C:\\Users\\kalit_000\\Desktop\\typesafe\\scaladbop\\op.txt")
